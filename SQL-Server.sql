@@ -1,0 +1,9 @@
+-- To view the all tables in the database
+SELECT * 
+FROM INFORMATION_SCHEMA.TABLES
+ORDER BY TABLE_SCHEMA
+
+-- To view the all columns in the database
+SELECT * 
+FROM INFORMATION_SCHEMA.COLUMNS
+ORDER BY TABLE_SCHEMA, TABLE_NAME
