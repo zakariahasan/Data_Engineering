@@ -1,4 +1,4 @@
-$path = "C:\Users\ZakariaH\Downloads\Sievo_NAV_Export_Files\NAV_India\"
+$path = "C:\Users\Zak..\Downloads\"
 $invalidChars = "[_\s-]"
 
 # Get all files in the specified directory
