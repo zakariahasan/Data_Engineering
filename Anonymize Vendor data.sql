@@ -1,10 +1,12 @@
-UPDATE vendor_master_data 
-SET vendor_name = 'Anonymized', 
-    vendor_address = 'Anonymized', 
-    vendor_phone = 'Anonymized', 
-    vendor_email = 'Anonymized' 
-WHERE vendor_group = 'EMP';
-
+UPDATE Vendor_table
+SET MD_VendorDesc = 'Anonymized', 
+    MD_VendorAddress = 'Anonymized', 
+    MD_VendorCity = 'Anonymized', 
+    MD_VendorPostalCode = 'Anonymized', 
+	MD_VendorState = 'Anonymized',
+	MD_VendorCountry = 'Anonymized',
+	MD_VendorCountryCode = 'Anonymized'
+WHERE MD_VendorGroupNo = 'EMPL';
 ---------------------------------
 UPDATE transaction_table 
 SET vendor_name = 'Anonymized', 
