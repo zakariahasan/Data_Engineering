@@ -37,3 +37,10 @@ print(df_filled)
 #df_filled.to_csv('BSEG_table_data_filled.csv', index=False)
 
 #########################################################################
+
+def anonymize_vendor_data(transaction_table, vendor_master_data):
+    mask = (vendor_master_data['vendor_id'] == transaction_table['vendor_id']) & (vendor_master_data['vendor_group'] == 'EMP')
+    transaction_table.loc[mask, ['vendor_name', 'vendor_address', 'vendor_phone', 'vendor_email']] = 'Anonymized'
+    return transaction_table
+
+#########################################################################
