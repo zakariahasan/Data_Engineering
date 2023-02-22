@@ -93,3 +93,30 @@ class CsvToPostgres:
 
         # Close the database connection
         self.conn.close()
+
+         
+    def merge_data_to_table(self):
+        # Load the data into a dataframe
+        df = self.load_csv_to_dataframe()
+
+        # Load existing data from table
+        with self.conn.cursor() as cur:
+            cur.execute(f"SELECT * FROM dbt.{self.table_name}")
+            data = cur.fetchall()
+        if data:
+            columns = [col[0] for col in cur.description]
+            existing_df = pd.DataFrame(data, columns=columns)
+        else:
+            existing_df = pd.DataFrame(columns=df.columns)
+
+        # Merge the dataframes and drop duplicates
+        merged_df = pd.concat([existing_df, df], ignore_index=True)
+        merged_df.drop_duplicates(inplace=True)
+
+        # Truncate the existing table and load the merged data
+        with self.conn.cursor() as cur:
+            cur.execute(f"TRUNCATE TABLE dbt.{self.table_name}")
+        self.load_data_to_table()
+        
+        # Close the database connection
+        self.conn.close()
